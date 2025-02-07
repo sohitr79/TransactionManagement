@@ -1,4 +1,4 @@
-package com.example.springBootHibernateJpa.custom.exception;
+package com.example.transactionmanagementdemo.custom.exception;
 
 import org.springframework.stereotype.Component;
 

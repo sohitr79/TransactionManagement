@@ -1,9 +1,7 @@
-package com.example.springBootHibernateJpa.entity;
+package com.example.transactionmanagementdemo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 
 /**
@@ -13,8 +11,6 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "emp")
-@Getter
-@Setter
 @Data
 public class EmployeeCascadePersist {
 

@@ -1,7 +1,7 @@
-package com.example.springBootHibernateJpa.controller;
+package com.example.transactionmanagementdemo.controller;
 
-import com.example.springBootHibernateJpa.entity.Department;
-import com.example.springBootHibernateJpa.service.DepartmentService;
+import com.example.transactionmanagementdemo.entity.Department;
+import com.example.transactionmanagementdemo.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
