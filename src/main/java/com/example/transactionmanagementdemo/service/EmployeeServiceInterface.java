@@ -1,6 +1,6 @@
-package com.example.springBootHibernateJpa.service;
+package com.example.transactionmanagementdemo.service;
 
-import com.example.springBootHibernateJpa.entity.EmployeeCascadePersist;
+import com.example.transactionmanagementdemo.entity.EmployeeCascadePersist;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

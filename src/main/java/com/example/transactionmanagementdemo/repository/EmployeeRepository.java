@@ -1,6 +1,6 @@
-package com.example.springBootHibernateJpa.repository;
+package com.example.transactionmanagementdemo.repository;
 
-import com.example.springBootHibernateJpa.entity.Employee;
+import com.example.transactionmanagementdemo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,14 +1,10 @@
-package com.example.springBootHibernateJpa.entity;
+package com.example.transactionmanagementdemo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "dept")
-@Getter
-@Setter
 @Data
 public class Department {
 

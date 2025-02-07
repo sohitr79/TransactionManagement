@@ -1,4 +1,4 @@
-package com.example.springBootHibernateJpa.custom.exception;
+package com.example.transactionmanagementdemo.custom.exception;
 
 public class EmptyInputException extends RuntimeException {
     private String errorCode;

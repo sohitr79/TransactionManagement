@@ -1,6 +1,6 @@
-package com.example.springBootHibernateJpa.advice;
+package com.example.transactionmanagementdemo.advice;
 
-import com.example.springBootHibernateJpa.custom.exception.EmptyInputException;
+import com.example.transactionmanagementdemo.custom.exception.EmptyInputException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

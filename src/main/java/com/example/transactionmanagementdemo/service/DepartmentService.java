@@ -1,9 +1,9 @@
-package com.example.springBootHibernateJpa.service;
+package com.example.transactionmanagementdemo.service;
 
-import com.example.springBootHibernateJpa.entity.Department;
-import com.example.springBootHibernateJpa.entity.MetaInfo;
-import com.example.springBootHibernateJpa.repository.DepartmentCrudRepository;
-import com.example.springBootHibernateJpa.repository.MetaInfoRepository;
+import com.example.transactionmanagementdemo.entity.Department;
+import com.example.transactionmanagementdemo.entity.MetaInfo;
+import com.example.transactionmanagementdemo.repository.DepartmentCrudRepository;
+import com.example.transactionmanagementdemo.repository.MetaInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,7 +22,7 @@ public class DepartmentService {
         departmentCrudRepository.save(department);
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveDepartmentWithTransaction(Department department) {
         departmentCrudRepository.save(department);
     }

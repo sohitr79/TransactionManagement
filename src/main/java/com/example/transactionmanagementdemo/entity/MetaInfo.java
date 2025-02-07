@@ -1,9 +1,7 @@
-package com.example.springBootHibernateJpa.entity;
+package com.example.transactionmanagementdemo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 
 /**
@@ -12,20 +10,18 @@ import lombok.Setter;
  * that are present either in this package or its child package
  */
 @Entity
-@Table(name = "emp2")
-@Getter
-@Setter
+@Table(name = "meta_info")
 @Data
-public class Employee {
+public class MetaInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String employeeName;
+    private String departmentName;
 
-    @Column(name = "name")
-    private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id", referencedColumnName = "departmentId")
-    private Department department;
+    public MetaInfo(String employeeName, String departmentName) {
+        this.employeeName = employeeName;
+        this.departmentName = departmentName;
+    }
 }

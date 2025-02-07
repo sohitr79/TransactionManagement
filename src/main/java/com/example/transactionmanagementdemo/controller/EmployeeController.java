@@ -1,8 +1,8 @@
-package com.example.springBootHibernateJpa.controller;
+package com.example.transactionmanagementdemo.controller;
 
-import com.example.springBootHibernateJpa.entity.Employee;
-import com.example.springBootHibernateJpa.entity.EmployeeCascadePersist;
-import com.example.springBootHibernateJpa.service.EmployeeService;
+import com.example.transactionmanagementdemo.entity.Employee;
+import com.example.transactionmanagementdemo.entity.EmployeeCascadePersist;
+import com.example.transactionmanagementdemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,13 +1,12 @@
-package com.example.springBootHibernateJpa.service;
+package com.example.transactionmanagementdemo.service;
 
-import com.example.springBootHibernateJpa.custom.exception.EmptyInputException;
-import com.example.springBootHibernateJpa.custom.exception.EmptyListException;
-import com.example.springBootHibernateJpa.entity.Employee;
-import com.example.springBootHibernateJpa.entity.EmployeeCascadePersist;
-import com.example.springBootHibernateJpa.entity.MetaInfo;
-import com.example.springBootHibernateJpa.repository.EmployeeCrudRepository;
-import com.example.springBootHibernateJpa.repository.EmployeeRepository;
-import com.example.springBootHibernateJpa.repository.MetaInfoRepository;
+import com.example.transactionmanagementdemo.custom.exception.EmptyInputException;
+import com.example.transactionmanagementdemo.custom.exception.EmptyListException;
+import com.example.transactionmanagementdemo.entity.Employee;
+import com.example.transactionmanagementdemo.entity.EmployeeCascadePersist;
+import com.example.transactionmanagementdemo.entity.MetaInfo;
+import com.example.transactionmanagementdemo.repository.EmployeeCrudRepository;
+import com.example.transactionmanagementdemo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
