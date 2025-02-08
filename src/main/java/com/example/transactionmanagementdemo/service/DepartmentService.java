@@ -18,45 +18,28 @@ public class DepartmentService {
     @Autowired
     MetaInfoRepository metaInfoRepository;
 
-    public void saveDepartment(Department department) {
-        departmentCrudRepository.save(department);
+    public Department saveDepartment(Department department) {
+        return departmentCrudRepository.save(department); // Saves and returns the entity with generated ID
     }
 
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    @Transactional(propagation = Propagation.NESTED)
+//    @Transactional(propagation = Propagation.MANDATORY)
+//    @Transactional(propagation = Propagation.NEVER)
+//    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+//    @Transactional(propagation = Propagation.SUPPORTS)
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveDepartmentWithTransaction(Department department) {
         departmentCrudRepository.save(department);
     }
 
+
 //    @Transactional(propagation = Propagation.REQUIRES_NEW)
-//    public void saveDepartmentReqNewProp(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-
 //    @Transactional(propagation = Propagation.NESTED)
-//    public void saveDepartmentNesProp(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-//
 //    @Transactional(propagation = Propagation.MANDATORY)
-//    public void saveDepartmentManProp(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-//
 //    @Transactional(propagation = Propagation.NEVER)
-//    public void saveDepartmentNevProp(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-//
 //    @Transactional(propagation = Propagation.NOT_SUPPORTED)
-//    public void saveDepartmentNotSupported(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-//
 //    @Transactional(propagation = Propagation.SUPPORTS)
-//    public void saveDepartmentSuppProp(Department department) {
-//        departmentCrudRepository.save(department);
-//    }
-
     @Transactional(propagation = Propagation.MANDATORY)
     public void saveMetaInfo(MetaInfo metaInfo) {
         metaInfoRepository.save(metaInfo);

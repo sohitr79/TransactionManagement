@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,40 +20,50 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @PostMapping("/save")
-    public ResponseEntity<Void> addEmployeeWithCascade(@RequestBody EmployeeCascadePersist employeeCascadePersist) {
+    public ResponseEntity<EmployeeCascadePersist> addEmployeeWithCascade(@RequestBody EmployeeCascadePersist employeeCascadePersist) {
 
-        employeeService.addEmployeeWithCascade(employeeCascadePersist);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        EmployeeCascadePersist employee = employeeService.addEmployeeWithCascade(employeeCascadePersist);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("{/id}")
+                .buildAndExpand(employee.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(employee);
     }
 
     @PostMapping("/save/transactional")
-    public ResponseEntity<Void> addEmployeeWithTransactional(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> addEmployeeWithTransactional(@RequestBody Employee employee) {
 
-        employeeService.addEmployee(employee);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+       Employee createdEmployee = employeeService.addEmployee(employee);
+       URI uri = ServletUriComponentsBuilder
+               .fromCurrentRequest()
+               .path("/{id}")
+               .buildAndExpand(createdEmployee.getId())
+               .toUri();
+        return ResponseEntity.created(uri).body(createdEmployee);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<EmployeeCascadePersist>> getAllEmployee() {
         List<EmployeeCascadePersist> employeeCascadePersistList = employeeService.getAllEmployee();
-        return new ResponseEntity<List<EmployeeCascadePersist>>(employeeCascadePersistList, HttpStatus.OK);
+        return ResponseEntity.ok(employeeCascadePersistList);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<EmployeeCascadePersist> getEmployeeById(@PathVariable long id){
+    public ResponseEntity<EmployeeCascadePersist> getEmployeeById(@PathVariable long id) {
 
         EmployeeCascadePersist employeeCascadePersist = employeeService.getEmployeeById(id);
-        return new ResponseEntity<EmployeeCascadePersist>(employeeCascadePersist,HttpStatus.OK);
+        return ResponseEntity.ok(employeeCascadePersist);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteEmployeeById(@PathVariable long id){
-         employeeService.deleteEmployeeById(id);
-        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+    public ResponseEntity<EmployeeCascadePersist> deleteEmployeeById(@PathVariable long id) {
+        EmployeeCascadePersist deletedEmployee = employeeService.deleteEmployeeById(id);
+        return ResponseEntity.accepted().body(deletedEmployee);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> updateEmployee(@RequestBody EmployeeCascadePersist employeeCascadePersist){
+    public ResponseEntity<Void> updateEmployee(@RequestBody EmployeeCascadePersist employeeCascadePersist) {
         employeeService.addEmployeeWithCascade(employeeCascadePersist);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

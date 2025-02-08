@@ -8,8 +8,6 @@ import com.example.transactionmanagementdemo.entity.MetaInfo;
 import com.example.transactionmanagementdemo.repository.EmployeeCrudRepository;
 import com.example.transactionmanagementdemo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,12 +24,11 @@ public class EmployeeService implements EmployeeServiceInterface {
     DepartmentService departmentService;
 
     @Override
-    public ResponseEntity<String> addEmployeeWithCascade(EmployeeCascadePersist employeeCascadePersist) {
+    public EmployeeCascadePersist addEmployeeWithCascade(EmployeeCascadePersist employeeCascadePersist) {
         if (employeeCascadePersist.getName().isEmpty() || employeeCascadePersist.getName().length() == 0) {
             throw new EmptyInputException("601", "Please send proper name, It's blank");
         }
-        employeeCrudRepository.save(employeeCascadePersist);
-        return ResponseEntity.ok("Employee saved successfully");
+        return employeeCrudRepository.save(employeeCascadePersist);
     }
 
     @Override
@@ -49,13 +46,14 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Override
-    public void deleteEmployeeById(long id) {
-        EmployeeCascadePersist employeeCascadePersist = employeeCrudRepository.getReferenceById(id);
-        employeeCrudRepository.delete(employeeCascadePersist);
+    public EmployeeCascadePersist deleteEmployeeById(long id) {
+        EmployeeCascadePersist deletedEmployee = employeeCrudRepository.getReferenceById(id);
+        employeeCrudRepository.delete(deletedEmployee);
+        return deletedEmployee;
     }
 
     @Transactional
-    public ResponseEntity<String> addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) {
         if (employee.getName().isEmpty() || employee.getName().length() == 0) {
             throw new EmptyInputException("601", "Please send proper name, It's blank");
         }
@@ -64,12 +62,12 @@ public class EmployeeService implements EmployeeServiceInterface {
         departmentService.saveDepartmentWithTransaction(employee.getDepartment());
 
 
-        employeeRepository.save(employee);
+        Employee createdEmployee = employeeRepository.save(employee);
 
         MetaInfo metaInfo = new MetaInfo(employee.getName(), employee.getDepartment().getName());
 
         departmentService.saveMetaInfo(metaInfo);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return createdEmployee;
     }
 }
