@@ -21,6 +21,12 @@ public class Employee {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "mobile")
+    private Integer mobile;
+
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "departmentId")
     private Department department;

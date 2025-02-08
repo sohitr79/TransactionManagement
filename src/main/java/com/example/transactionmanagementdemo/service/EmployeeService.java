@@ -1,5 +1,6 @@
 package com.example.transactionmanagementdemo.service;
 
+import com.example.transactionmanagementdemo.custom.exception.BusinessException;
 import com.example.transactionmanagementdemo.custom.exception.EmptyInputException;
 import com.example.transactionmanagementdemo.custom.exception.EmptyListException;
 import com.example.transactionmanagementdemo.entity.Employee;
@@ -53,10 +54,8 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Transactional
-    public Employee addEmployee(Employee employee) {
-        if (employee.getName().isEmpty() || employee.getName().length() == 0) {
-            throw new EmptyInputException("601", "Please send proper name, It's blank");
-        }
+    public ResponseEntity<String> addEmployee(Employee employee) {
+        validateEmployee(employee);
         //First save the Department then save employee
 
         departmentService.saveDepartmentWithTransaction(employee.getDepartment());
@@ -69,5 +68,15 @@ public class EmployeeService implements EmployeeServiceInterface {
         departmentService.saveMetaInfo(metaInfo);
 
         return createdEmployee;
+    }
+
+    private void validateEmployee(Employee employee) {
+
+        if (employee.getName() == null || employee.getName().isBlank()) {
+            throw new IllegalArgumentException("Employee name cannot be empty");
+        }
+        if (employeeRepository.findByMobile(employee.getMobile()).isPresent()) {
+            throw new BusinessException("408","Already registered Mobile Number");
+        }
     }
 }
