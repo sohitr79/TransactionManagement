@@ -54,8 +54,9 @@ public class EmployeeService implements EmployeeServiceInterface {
     }
 
     @Transactional
-    public ResponseEntity<String> addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) {
         validateEmployee(employee);
+
         //First save the Department then save employee
 
         departmentService.saveDepartmentWithTransaction(employee.getDepartment());
