@@ -1,4 +1,4 @@
-package com.example.transactionmanagementdemo.entity;
+package com.example.springsecurity.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

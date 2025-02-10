@@ -1,13 +1,13 @@
-package com.example.transactionmanagementdemo;
+package com.example.springsecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootHibernateJpaApplication {
+public class SpringSecurityDemo {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootHibernateJpaApplication.class, args);
+		SpringApplication.run(SpringSecurityDemo.class, args);
 	}
 
 }

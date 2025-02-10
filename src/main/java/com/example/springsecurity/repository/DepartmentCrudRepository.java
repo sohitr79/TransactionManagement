@@ -1,6 +1,6 @@
-package com.example.transactionmanagementdemo.repository;
+package com.example.springsecurity.repository;
 
-import com.example.transactionmanagementdemo.entity.Department;
+import com.example.springsecurity.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DepartmentCrudRepository extends JpaRepository<Department,Long> {

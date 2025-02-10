@@ -1,9 +1,8 @@
-package com.example.transactionmanagementdemo.controller;
+package com.example.springsecurity.controller;
 
-import com.example.transactionmanagementdemo.entity.Department;
-import com.example.transactionmanagementdemo.service.DepartmentService;
+import com.example.springsecurity.entity.Department;
+import com.example.springsecurity.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +26,11 @@ public class DepartmentController {
                 .buildAndExpand(savedDepartment.getDepartmentId())
                 .toUri();
         return ResponseEntity.created(location).body(savedDepartment);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Department> getDepartmentById(@PathVariable Long id){
+        Department department = departmentService.getDepartment(id);
+        return ResponseEntity.ok(department);
     }
 }

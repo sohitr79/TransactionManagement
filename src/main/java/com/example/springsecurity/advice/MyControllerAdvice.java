@@ -1,21 +1,18 @@
-package com.example.transactionmanagementdemo.advice;
+package com.example.springsecurity.advice;
 
-import com.example.transactionmanagementdemo.custom.exception.BusinessException;
-import com.example.transactionmanagementdemo.custom.exception.EmptyInputException;
-import com.example.transactionmanagementdemo.model.ErrorResponse;
+import com.example.springsecurity.custom.exception.BusinessException;
+import com.example.springsecurity.custom.exception.EmptyInputException;
+import com.example.springsecurity.model.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 // This is AOP logic
 @RestControllerAdvice

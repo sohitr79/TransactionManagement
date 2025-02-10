@@ -1,9 +1,9 @@
-package com.example.transactionmanagementdemo.service;
+package com.example.springsecurity.service;
 
-import com.example.transactionmanagementdemo.entity.Department;
-import com.example.transactionmanagementdemo.entity.MetaInfo;
-import com.example.transactionmanagementdemo.repository.DepartmentCrudRepository;
-import com.example.transactionmanagementdemo.repository.MetaInfoRepository;
+import com.example.springsecurity.entity.Department;
+import com.example.springsecurity.entity.MetaInfo;
+import com.example.springsecurity.repository.DepartmentCrudRepository;
+import com.example.springsecurity.repository.MetaInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -43,6 +43,10 @@ public class DepartmentService {
     @Transactional(propagation = Propagation.MANDATORY)
     public void saveMetaInfo(MetaInfo metaInfo) {
         metaInfoRepository.save(metaInfo);
+    }
+
+    public Department getDepartment(Long id) {
+        return departmentCrudRepository.findById(id).orElse(null);
     }
 }
 

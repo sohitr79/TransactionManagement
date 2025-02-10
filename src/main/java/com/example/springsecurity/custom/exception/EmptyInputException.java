@@ -1,4 +1,4 @@
-package com.example.transactionmanagementdemo.custom.exception;
+package com.example.springsecurity.custom.exception;
 
 public class EmptyInputException extends RuntimeException {
     private String errorCode;

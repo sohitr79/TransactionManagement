@@ -1,4 +1,4 @@
-package com.example.transactionmanagementdemo.model;
+package com.example.springsecurity.model;
 
 import lombok.Getter;
 
